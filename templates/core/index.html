@@ -74,7 +74,7 @@
                                         <div class="product-cart-wrap mb-30">
                                             <div class="product-img-action-wrap">
                                                 <div class="product-img product-img-zoom">
-                                                    <a href="shop-product-right.html">
+                                                    <a href="{% url 'core:product-detail' product.pid %}">
                                                         <img class="default-img" src={{product.image.url}} alt="" />
                                                         <img class="hover-img" src={{product.image.url}} alt="" />
                                                     </a>
@@ -90,9 +90,9 @@
                                             </div>
                                             <div class="product-content-wrap">
                                                 <div class="product-category">
-                                                    <a href="shop-grid-right.html">{{ product.category.title }}</a>
+                                                    <a href="{% url 'core:category-product-list' product.category.title %}">{{ product.category.title }}</a>
                                                 </div>
-                                                <h2><a href="shop-product-right.html">{{ product.title}}</a></h2>
+                                                <h2><a href="{% url 'core:product-detail' product.pid %}">{{ product.title}}</a></h2>
                                                 <div class="product-rate-cover">
                                                     <div class="product-rate d-inline-block">
                                                         <div class="product-rating" style="width: 90%"></div>
@@ -100,7 +100,7 @@
                                                     <span class="font-small ml-5 text-muted"> (4.0)</span>
                                                 </div>
                                                 <div>
-                                                    <span class="font-small text-muted">By <a href="vendor-details-1.html">{{product.vendor }}</a></span>
+                                                    <span class="font-small text-muted">By <a href="{% url 'core:vendor-detail' product.vendor.vid %}">{{product.vendor }}</a></span>
                                                 </div>
                                                 <div class="product-card-bottom">
                                                     <div class="product-price">
@@ -2597,21 +2597,12 @@
                     <div class="sidebar-widget widget-category-2 mb-30">
                         <h5 class="section-title style-1 mb-30">Category</h5>
                         <ul>
+                            {% for category in categories%}
                             <li>
-                                <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-1.svg' %}" alt="" />Milks & Dairies</a><span class="count">30</span>
-                            </li>
-                            <li>
-                                <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-2.svg' %}" alt="" />Clothing</a><span class="count">35</span>
-                            </li>
-                            <li>
-                                <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-3.svg' %}" alt="" />Pet Foods </a><span class="count">42</span>
-                            </li>
-                            <li>
-                                <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-4.svg' %}" alt="" />Baking material</a><span class="count">68</span>
-                            </li>
-                            <li>
-                                <a href="shop-grid-right.html"> <img src="{% static 'assets/imgs/theme/icons/category-5.svg' %}" alt="" />Fresh Fruit</a><span class="count">87</span>
-                            </li>
+                                <a href="{% url 'core:category-product-list' category.title %}"> <img src={{category.image.url}} alt="" />{{category.title}}</a><span class="count">{{category.category.count}}</span>
+                            </li>    
+                            {%endfor%}
+                           
                         </ul>
                     </div>
                     <!-- Fillter By Price -->
@@ -3077,5 +3068,5 @@
             </div>
         </section>
         <!--End 4 columns-->
-    </main>
+</main>
 {% endblock content %}

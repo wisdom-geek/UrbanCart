@@ -92,7 +92,7 @@
                                 {% for category in categories%}
                                 <article class="col-xl-4 col-lg-6 col-md-6 text-center hover-up mb-30 animated">
                                     <div class="post-thumb">
-                                        <a href="blog-post-right.html">
+                                        <a href="{% url 'core:category-product-list' category.title %}">
                                             <img class="border-radius-15" src={{category.image.url}} alt="" />
                                         </a>
                                         <div class="entry-meta">
@@ -106,7 +106,7 @@
                                         </h4>
                                         <div class="entry-meta font-xs color-grey mt-10 pb-10">
                                             <div>                                                
-                                                <span class="hit-count mr-10">{{category.category.count}} Product</span>
+                                                <span class="hit-count mr-10">{{category.category.count}}Product{{category.category.count| pluralize}}</span>
                                             </div>
                                         </div>
                                     </div>
@@ -146,21 +146,11 @@
                             <div class="sidebar-widget widget-category-2 mb-50">
                                 <h5 class="section-title style-1 mb-30">Category</h5>
                                 <ul>
+                                    {% for category in categories%}
                                     <li>
-                                        <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-1.svg" alt="" />Milks & Dairies</a><span class="count">30</span>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-2.svg" alt="" />Clothing</a><span class="count">35</span>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-3.svg" alt="" />Pet Foods </a><span class="count">42</span>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-4.svg" alt="" />Baking material</a><span class="count">68</span>
-                                    </li>
-                                    <li>
-                                        <a href="shop-grid-right.html"> <img src="assets/imgs/theme/icons/category-5.svg" alt="" />Fresh Fruit</a><span class="count">87</span>
-                                    </li>
+                                        <a href="{% url 'core:category-product-list' category.title %}"> <img src={{category.image.url}} alt="" />{{category.title}}</a><span class="count">{{category.category.count}}</span>
+                                    </li>    
+                                    {%endfor%}                                
                                 </ul>
                             </div>
                             <!-- Product sidebar Widget -->

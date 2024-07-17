@@ -44,6 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
+    # Third Party apps
+    'taggit',
+    'ckeditor',
+    
         
     #Custom Apps
     'core',
@@ -73,6 +78,7 @@ TEMPLATES = [
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
+                'core.context_processor.default',
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
@@ -162,3 +168,29 @@ JAZZMIN_SETTINGS = {
 }
 
 AUTH_USER_MODEL = 'userauths.User'
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'skin': 'moono',
+        'codeSnippet_theme': 'monokai',
+        'toolbar': 'all',
+        'extraPlugins': ','.join([
+            'codesnippet',
+            'widget',
+            'dialog',
+            'font',
+            'colorbutton'
+        ]),        
+        'font_names': 'Arial/Arial, Helvetica, sans-serif;' +
+                      'Comic Sans MS/Comic Sans MS, cursive;' +
+                      'Courier New/Courier New, Courier, monospace;' +
+                      'Georgia/Georgia, serif;' +
+                      'Lucida Sans Unicode/Lucida Sans Unicode, Lucida Grande, sans-serif;' +
+                      'Tahoma/Tahoma, Geneva, sans-serif;' +
+                      'Times New Roman/Times New Roman, Times, serif;' +
+                      'Trebuchet MS/Trebuchet MS, Helvetica, sans-serif;' +
+                      'Verdana/Verdana, Geneva, sans-serif',
+    }
+}

@@ -7,7 +7,7 @@ class ProductImagesAdmin(admin.TabularInline):
     
 class ProductAdmin(admin.ModelAdmin):
     inlines = [ProductImagesAdmin]
-    list_display = ['vendor', 'title', 'product_image','category', 'formatted_price', 'featured', 'product_status']
+    list_display = ['vendor', 'title', 'product_image','category', 'formatted_price', 'featured', 'product_status', 'pid']
     
     readonly_fields = ['pid']
     def formatted_price(self, obj):
