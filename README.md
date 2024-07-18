@@ -7,52 +7,91 @@ Welcome to UrbanCart, a modern eCommerce platform built with Next.js and various
 UrbanCart is designed to provide a seamless shopping experience with features that cater to both customers and administrators. It leverages 
 html, css and javascript for frontend development, integrating with various technologies for authentication, database management, and UI/UX enhancements.
 
+# Features
+1. User Authentication and Management
+- Secure user authentication
+- User roles and permissions management
+- Activity logging
+2. Product Management
+- Create, read, update, and delete products
+- Tagging system for products
+- Search functionality
+3. Miscellaneous
+- Responsive design using Bootstrap
+- Admin panel with Django Jazzmin for better UI
 
 # Technologies Used
-- Python: Backend logic and Django framework.
-- HTML/CSS/JavaScript: Frontend development for templating and dynamic interactions.
-- Django Packages:
-- - django-jazzmin: Customized admin interface.
-- - django-taggit: Tagging support for products.
-- - django-shortuuidfield: UUID field support.
+- Frontend: HTML, CSS, JavaScript
+- Backend: Django
+- Database: SQLite (with plans to migrate to PostgreSQL)
+- Dependencies: 
+- - `asgiref==3.8.1`
+- - `Django==5.0.7`
+- - `django-jazzmin==3.0.0`
+- - `django-shortuuidfield==0.1.3`
+- - `django-taggit==5.0.1`
+- - `pillow==10.4.0`
+- - `python-dotenv==1.0.1`
+- - `shortuuid==1.0.13`
+- - `six==1.16.0`
+- - `sqlparse==0.5.0`
+- - `tzdata==2024.1`
 
-# Features
-1. User Authentication: Secure user authentication using Django's built-in authentication system and additional plugins.
-2. Product Management: Manage products with features like CRUD operations, categories, and image uploads.
-3. Custom Admin Interface: Enhanced admin interface using django-jazzmin for improved user experience.
-4. Tagging System: Utilize django-taggit for tagging products with categories and other labels.
-5. Data Persistence: Ensure data integrity and efficiency with PostgreSQL 
+# Getting Started
+## Prerequisites
+- Python installed on your system
+- Django installed
 
-# Installation
-To run this project locally, follow these steps:
-1. Clone the repository:
+
+# Step 1: Clone the Project
+1. Open your command line or terminal.
+2. Navigate to the directory where you want to store your Django project.
+3. Clone the project from GitHub:
     ```bash
     git clone https://github.com/wisdom-geek/UrbanCart
     ```
-2. Navigate to the project directory:
+# Step 2: Create a Virtual Environment
+1. Navigate to the project directory:
     ```bash
     cd ecomprj
     ```
-3. Set up the virtual environment (recommended):
+2. Create a virtual environment:
     ```bash
-       python -m venv venv
-       source venv/bin/activate  # On macOS/Linux
-       env\Scripts\activate  # On Windows
+    cd ecomprj
     ```
-4. Install dependencies:
+3. Activate the virtual environment:
+  - On Windows: 
+      ```bash
+         venv\Scripts\activate
+      ```
+  - On macOS and Linux:
+      ```bash
+        source venv/bin/activate
+      ```
+# Step 3: Install Dependencies
+1. Ensure you're in the project directory with the virtual environment activated.
+2. Install the project dependencies using pip:
+    ```bash
+        pip install -r requirements.txt
     ```
-      pip install -r requirements.txt
+# Step 4: Set Up the Database
+1. Create the database tables and apply migrations:
+    ```bash
+        python manage.py migrate
     ```
-5. Set up the database:
-   ```
-      python manage.py migrate
-      python manage.py createsuperuser
-   ```
-6. Access the application:
-    Open a web browser and go to http://127.0.0.1:8000/ to view the application.
+2. Create a superuser account:
+    ```bash
+        python manage.py createsuperuser
+    ```
+# Step 5: Run the Development Server
+1. Start the Django development server:
+    ```bash
+        python manage.py runserver
+    ```
+2. Open your web browser and access the development server at http://127.0.0.1:8000/.
 
-# Configuration
-Before running the project, configure your environment variables:
+# Step 6: Access the Admin Panel
+- To access the admin panel, go to http://127.0.0.1:8000/admin/ and log in using the superuser account credentials you created earlier.
 
 
 ## Contributing
@@ -103,5 +142,8 @@ Implement PayPal for international payments. Users will be able to securely comp
 
 ## Checkout Page
 Develop a robust checkout page to streamline the purchasing process. This page will handle order details, payment processing, and confirmation, ensuring a smooth user experience.
+
+## API Documentation with Swagger
+Add documentation using Swagger in Django to provide clear and interactive API documentation.
 
 Stay tuned for updates as we implement these exciting features!😊😊
