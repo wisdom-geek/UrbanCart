@@ -98,27 +98,18 @@
                                     <h5 class="mb-30">By Tags</h5>
                                     <div class="sidebar-widget widget-tags">
                                         <ul class="tags-list">
-                                            <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Milk</a>
-                                            </li>
-                                            <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Broccoli</a>
-                                            </li>
-                                            <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Smoothie</a>
-                                            </li>
-                                            <li class="hover-up">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Fruit</a>
-                                            </li>
-                                            <li class="hover-up mr-0">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Salad</a>
-                                            </li>
-                                            <li class="hover-up mr-0">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Appetizer</a>
-                                            </li>
-                                            <li class="hover-up mr-0 mb-0">
-                                                <a href="blog-category-grid.html"><i class="fi-rs-cross mr-10"></i>Appetizer</a>
-                                            </li>
+                                            {% for product in products %}
+                                                {% for tag in product.tags.all %}
+                                                    
+                                                    {% if forloop.parentloop.counter < 2 %} {# First row #}
+                                                        <li class="hover-up">
+                                                            <a href="{% url 'core:tags' tag.slug %}" rel="tag">
+                                                                <i class="fi-rs-cross mr-1"></i>{{ tag.name|truncatechars:15 }}
+                                                            </a>
+                                                        </li>                                                       
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endfor %}
                                         </ul>
                                     </div>
                                 </div>
@@ -161,7 +152,7 @@
                 <div class="col-12">
                     <div class="shop-product-fillter">
                         <div class="totall-product">
-                            <p>We found <strong class="text-brand">29</strong> items for you!</p>
+                            <p>We found <strong class="text-brand">{{products.count}}</strong> item{{products.count|pluralize:"s"}} for you!</p>
                         </div>
                         <div class="sort-by-product-area">
                             <div class="sort-by-cover mr-10">

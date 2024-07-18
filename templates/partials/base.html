@@ -19,6 +19,9 @@
     <link rel="stylesheet" href="{% static 'assets/css/plugins/slider-range.css' %}" />
     <link rel="stylesheet" href="{% static '/assets/css/main.css' %}" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    {% comment %} <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"> {% endcomment %}
+    
 </head>
 
 <body>
@@ -188,7 +191,7 @@
                     </div>
                     <div class="header-right">
                         <div class="search-style-2">
-                            <form action="#">
+                            <form action="{% url 'core:search'%}" method="GET">
                                 <select class="select-active">
                                     <option>All Categories</option>
                                     <option>Milks and Dairies</option>
@@ -202,7 +205,8 @@
                                     <option>Noodles & Rice</option>
                                     <option>Ice cream</option>
                                 </select>
-                                <input type="text" placeholder="Search for items..." />
+                                <input type="text" placeholder="Search for items..." name="q" />
+                                <button class="fas fa-search"></button>
                             </form>
                         </div>
                         <div class="header-action-right">
@@ -985,7 +989,7 @@
         </div>
     </div> {% endcomment %}
     <!-- Vendor JS-->
-    <script data-cfasync="false" src="{% static '/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js' %}"></script>
+    <script data-cfasync="false" src="https://cdnjs.cloudflare.com/ajax/libs/cloudflare-email-decode/1.0.2/email-decode.min.js"></script>
     <script src="{% static 'assets/js/vendor/modernizr-3.6.0.min.js' %}"></script>
     <script src="{% static 'assets/js/vendor/jquery-3.6.0.min.js' %}"></script>
     <script src="{% static 'assets/js/vendor/jquery-migrate-3.3.0.min.js' %}"></script>
@@ -1007,8 +1011,9 @@
     <script src="{% static 'assets/js/plugins/jquery.theia.sticky.js' %}"></script>
     <script src="{% static 'assets/js/plugins/jquery.elevatezoom.js' %}"></script>
     <!-- Template  JS -->
-    <script src="{% static './assets/js/main.js' %}"></script>
-    <script src="{% static './assets/js/shop.js' %}"></script>
+    <script src="{% static 'assets/js/main.js' %}"></script>
+    <script src="{% static 'assets/js/shop.js' %}"></script>
+    <script src="{% static 'assets/js/function.js' %}"></script>
 </body>
 
 </html>

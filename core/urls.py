@@ -22,4 +22,11 @@ urlpatterns = [
     
     # Tags
     path('products/tags/<slug:tag_slug>/', views.tag_list, name='tags'),
+    
+    # Add review
+    path('ajax_add_review/<str:pid>/', views.ajax_add_review, name='ajax_add_review'),
+    
+    # Search
+    
+    path("search/", views.search_view, name="search"),
 ]
