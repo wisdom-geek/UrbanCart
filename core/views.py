@@ -4,6 +4,7 @@ from taggit.models import Tag
 from django.db.models import Avg, Count
 from core.forms import ProductReviewForm
 from django.http import JsonResponse
+from django.template.loader import render_to_string
 # Create your views here.
 
 def index(request):
@@ -164,5 +165,31 @@ def search_view(request):
     }
     
     return render(request, "core/search.html", context)
+
+def filter_product_view(request):
+    categories = request.GET.getlist('category[]')
+    vendors = request.GET.getlist('vendor[]')
+    min_price = request.GET['min_price']
+    max_price = request.GET['max_price']
     
+    
+    products = Product.objects.filter(product_status="published").order_by("-id").distinct()
+    
+    products = products.filter(price__gte=min_price)
+    products = products.filter(price__lte=max_price)
+    
+    if len(categories) > 0:
+        products = products.filter(category__id__in=categories).distinct() 
+        
+    if len(vendors) > 0:
+        products = products.filter(vendor__id__in=vendors).distinct() 
+    
+    context = {
+        'products':products
+    }
+        
+    data = render_to_string("core/async/product-list.html", context )
+    return JsonResponse({'data':data})
+        
+        
     
