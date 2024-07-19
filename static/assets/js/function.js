@@ -138,3 +138,90 @@ $(document).ready(function(){
 });
 
 
+$(".add-to-cart-btn").on("click", function(){
+    let this_val = $(this)
+    let index = this_val.attr("data-index")
+
+    let quantity = $(".product-quantity-"+ index).val()
+    let product_title = $(".product-title-"+ index).val()
+
+    let product_id = $(".product-id-"+ index).val()
+    let product_price = $(".current-product-price-"+ index).text()
+    
+    let product_pid = $(".product-pid-"+ index).val()
+    let product_image = $(".product-image-"+ index).val()
+
+    console.log("Quantity", quantity)
+    console.log("product_id", product_id)
+    console.log("product pid", product_pid)
+    console.log("product index", index)
+    console.log("product image", product_image)
+    console.log("product_title", product_title)
+    console.log("product_price", product_price)
+    console.log("Current Element", this_val)
+
+    $.ajax({
+        url:'/add-to-cart',
+        data:{
+            'id':product_id,
+            'pid':product_pid,
+            'image':product_image,
+            'qty':quantity,
+            'title':product_title,
+            'price':product_price,
+        },
+        dataType:"json",
+        beforeSend: function(){
+            console.log("Adding products to cart")
+        },
+        success: function(response){
+            this_val.html("✓")           
+            console.log("Added products to cart")
+            $(".cart-items-count").text(response.totalcartitems)
+
+        }
+    })
+    
+    })
+
+
+
+
+//Add to cart functionality
+// $(".add-to-cart-btn").on("click", function(){
+
+//     let quantity = $("#product-quantity").val()
+//     let product_title = $(".product-title").val()
+//     let product_id = $(".product-id").val()
+//     let product_price = $("#current-product-price").text()
+//     let this_val = $(this)
+
+//     console.log("Quantity", quantity)
+//     console.log("product_title", product_title)
+//     console.log("product_id", product_id)
+//     console.log("product_price", product_price)
+//     console.log("Current Element", this_val)
+
+//     $.ajax({
+//         url:'/add-to-cart',
+//         data:{
+//             'id':product_id,
+//             'qty':quantity,
+//             'title':product_title,
+//             'price':product_price,
+//         },
+//         dataType:"json",
+//         beforeSend: function(){
+//             console.log("Adding products to cart")
+//         },
+//         success: function(response){
+//             this_val.html("Item Added to cart")
+//             console.log("Added products to cart")
+//             $(".cart-items-count").text(response.totalcartitems)
+
+//         }
+//     })
+
+// })
+
+
