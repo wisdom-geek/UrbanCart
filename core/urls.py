@@ -34,7 +34,14 @@ urlpatterns = [
     path('add-to-cart/', views.add_to_cart_view, name="add-to-cart"),
     # Cart page url
     path('cart/', views.cart_view, name="cart"),
+    # Deleting items from cart
+    path('delete-from-cart/', views.delete_item_from_cart_view, name="delete-from-cart"),
+    path('update-cart/', views.update_cart_view, name="update-cart"),
     
     # filter products url
     path('filter-products/', views.filter_product_view, name='filter-products'),
+    
+    # checkout url
+    path('checkout/', views.checkout_view, name="checkout"),
+    
 ]
